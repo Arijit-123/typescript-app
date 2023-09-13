@@ -1,16 +1,33 @@
+import { useState } from 'react';
 import React from 'react';
-
 import './App.css';
 import Inputfeilds from './Components/Inputfeilds';
+import { Todo } from './model';
+import Todolist from './Components/Todolist';
 
 
 
 const App:React.FC = () => {
+  const[todo, setTodo]=useState<string>("");
+  const[todos,setTodos]=useState<Todo[]>([]);
+
+
+  const handleAdd=(e: React.FormEvent)=>{
+e.preventDefault();
+if(todo)
+{
+  setTodos([...todos, {id:Date.now(),todo, isdone:false}]);
+  setTodo("");
+}
+
+  }
+  console.log('zingu todo',todo);
   return (
     <div className="App">
       <span className='heading'>Taskify</span>
-      <Inputfeilds/>
-
+      <Inputfeilds todo={todo} setTodo={setTodo}  handleAdd={handleAdd} />
+     <Todolist todos={todos} setTodos={setTodos}/>
+     
     </div>
   )
 }
