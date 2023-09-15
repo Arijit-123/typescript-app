@@ -1,9 +1,11 @@
 import React from 'react'
 import { Todo } from '../model'
+import Singletodo from './Singletodo';
 
 
 interface Props{
   todos: Todo[];
+  
   setTodos:React.Dispatch<React.SetStateAction<Todo[]>>;
 }
 
@@ -13,9 +15,14 @@ const Todolist: React.FC<Props> = ({todos, setTodos}) => {
     <>
     <div>
       {
-        todos.map((item) =>(
+        todos?.map((item,index) =>(
 
-         <li> {item.todo}</li>
+         <Singletodo
+          todo={item} 
+         
+         todos={todos}
+         setTodos={setTodos}
+         />
         ))
       }
     </div>
