@@ -11,6 +11,7 @@ interface Props{
 
 const Todolist: React.FC<Props> = ({todos, setTodos}) => {
   console.log('todos',todos);
+
   return (
     <>
     <div>
