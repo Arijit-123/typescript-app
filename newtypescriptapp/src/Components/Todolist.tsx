@@ -7,6 +7,8 @@ interface Props{
   todos: Todo[];
   
   setTodos:React.Dispatch<React.SetStateAction<Todo[]>>;
+  CompletedTask: Todo[];
+  setCompletedtask:React.Dispatch<React.SetStateAction<Todo[]>>;
 }
 
 const Todolist: React.FC<Props> = ({todos, setTodos}) => {
@@ -14,7 +16,7 @@ const Todolist: React.FC<Props> = ({todos, setTodos}) => {
 
   return (
     <>
-    <div>
+    {/* <div>
       {
         todos?.map((item,index) =>(
 
@@ -26,6 +28,39 @@ const Todolist: React.FC<Props> = ({todos, setTodos}) => {
          />
         ))
       }
+    </div> */}
+
+    <div className='container'>
+      <div className='todos'>
+<span className='todos__heading'>Active Tasks </span>
+
+{
+        todos?.map((item,index) =>(
+
+         <Singletodo
+          todo={item} 
+         
+         todos={todos}
+         setTodos={setTodos}
+         />
+        ))
+      }
+      </div>
+      <div className='todos remove'>
+<span className='todos__heading'>Completed Tasks</span>
+{
+        todos?.map((item,index) =>(
+
+         <Singletodo
+          todo={item} 
+         
+         todos={todos}
+         setTodos={setTodos}
+         />
+        ))
+      }
+      </div>
+     
     </div>
     </>
   )
